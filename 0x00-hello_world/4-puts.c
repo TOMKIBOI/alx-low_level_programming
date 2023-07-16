@@ -1,10 +1,10 @@
 #include <stdio.h>
-/**
- * this is geeky
- * geek time
- */
 int main(void)
 {
-	puts(Programming is like building a multilingual puzzle);
-		return(0);
+/**
+ * this is puts function
+ */	
+	puts ("Programming is like building a multilingual puzzle");
+	return (0);
+
 }
