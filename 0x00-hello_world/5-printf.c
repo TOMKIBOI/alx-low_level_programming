@@ -1,10 +1,10 @@
 #include <stdio.h>
 /**
- * this is the entry point
- * tom is the author
+ * main-entry point
+ * Return:prints the statement
  */
 int main(void)
 {
-	printf(with proper grammar, but the outcome is a piece of art, );
-	return(0);
-}	
+	printf("with proper grammar, but the outcome is a piece of art,");
+	return (0);
+}
