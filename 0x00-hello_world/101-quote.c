@@ -1,8 +1,8 @@
 #include<stdio.h>
 #include<unistd.h>
 /**
- * main-entry point
- * Return 1
+ * Main-Entry point
+ * Return: returns a value of 1 always
  */
 int main(void)
 {
