@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<unistd.h>
 /**
- * Main-Entry point
+ * Main void returns write function
  * Return: returns a value of 1 always
  */
 int main(void)
