@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 /**
- * main - print base 16
+ * main - print 0 to 9 with ,
  *
  *Return: Always 0 (success)
  */
@@ -9,12 +9,16 @@
 int main(void)
 {
 	int a;
-	char d;
 
 	for (a = 0; a < 10; a++)
+	{
 		putchar((a % 10) + '0');
-	for (d = 97; d <= 102; d++)
-		putchar(d);
+		if (a < 9)
+		{
+			putchar(',');
+			putchar(' ');
+		}
+	}
 	putchar('\n');
 	return (0);
 }
