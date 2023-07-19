@@ -4,13 +4,13 @@
 /**
  *_islower - checks for lowercase
  *
- *ctype: is the argumentprototype to check
+ *@c: is the argumentprototype to check
  *
  *Return: 1 for lowercase and 0 otherwise
  */
-int _islower(int a)
+int _islower(int c)
 {
-	if (islower(a))
+	if (islower(c))
 		return (1);
 	else
 		return (0);
