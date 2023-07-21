@@ -1,5 +1,4 @@
 #include "main.h"
-#include <stdio.h>
 
 /**
  *print_line - prints _ n times in terminal
@@ -8,13 +7,13 @@
 
 void print_line(int n)
 {
-	int a;
+	int i;
 
 	if (n > 0)
 	{
-		for (a = 0; a < n; a++)
+		for (i = 0; i < n; i++)
 		{
-			_putchar(20);
+			_putchar(95);
 		}
 	}
 	_putchar('\n');

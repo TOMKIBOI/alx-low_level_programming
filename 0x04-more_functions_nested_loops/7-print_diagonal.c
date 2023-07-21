@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdio.h>
 
 /**
  *print_diagonal - prints a diagonal in the terminal
@@ -7,21 +8,21 @@
 
 void print_diagonal(int n)
 {
-	int c, d;
+	int i, k;
 
 	if (n <= 0)
 		_putchar('\n');
 	else
 	{
-		for (c = 0; c < n; c++)
+		for (i = 0; i < n; i++)
 		{
-			for (d = 0; d < n; d++)
+			for (k = 0; k < n; k++)
 			{
-				if (d == c)
+				if (k == i)
 				{
 					_putchar('\\');
 				}
-				else if (d < c)
+				else if (k < i)
 					_putchar(' ');
 			}
 			_putchar('\n');
