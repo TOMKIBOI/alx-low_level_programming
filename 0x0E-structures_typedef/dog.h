@@ -4,7 +4,7 @@
 /**
  * dog_p - Typedef for struct dog
  */
-typedef struct dog dog_p;
+typedef struct dog dog_t;
 
 /**
  * struct dog - struct that stores some information of a dog
@@ -24,7 +24,7 @@ struct dog
 
 void init_dog(struct dog *d, char *name, float age, char *owner);
 void print_dog(struct dog *d);
-dog_p *new_dog(char *name, float age, char *owner);
-void free_dog(dog_p *d);
+dog_t *new_dog(char *name, float age, char *owner);
+void free_dog(dog_t *d);
 
 #endif
