@@ -3,13 +3,13 @@
 #include <string.h>
 
 /**
- * new_dog - a new dog.
- * @name: the dog name.
+ * new_dog - new dog.
+ * @name:  dog name.
  * @age: dog age.
- * @owner: the dog owner.
+ * @owner: dog owner.
  *
- * Return: str dog.
- * if fails, call NULL.
+ * Return: struct dog.
+ * if fails, returns NULL.
  */
 dog_t *new_dog(char *name, float age, char *owner)
 {
