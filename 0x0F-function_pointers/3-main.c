@@ -8,7 +8,7 @@
  */
 int main(int argc, char *argv[])
 {
-	int i, j;
+	int k, j;
 	int (*calculation)(int, int);
 
 	if (argc != 4)
@@ -31,9 +31,9 @@ int main(int argc, char *argv[])
 		exit(99);
 	}
 
-	i = atoi(argv[1]);
+	k = atoi(argv[1]);
 	j = atoi(argv[3]);
 
-	printf("%d\n", calculation(i, j));
+	printf("%d\n", calculation(k, j));
 	return (0);
 }
