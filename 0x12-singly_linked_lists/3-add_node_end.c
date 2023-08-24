@@ -5,34 +5,44 @@
 /**
  * add_node_end - adds a new node at the end of a linked list
  * @head: a pointer to the linked list
- * @str:  adds new string in the begining of the node
+ * @str:  adds new string in the end of the node
  *
  * Return:  address of the new node, or NULL if it fails
  */
 
 list_t *add_node_end(list_t **head, const char *str)
 {
-	list_t *new_node, *temp;
+	list_t *struct_node, *temp;
 
 	if (str == NULL)
 		return (NULL);
 
-	new_node = malloc(sizeof(list_t));
-	if (new_node == NULL)
+	struct_node = malloc(sizeof(list_t));
+	if (struct_node == NULL)
 		return (NULL);
+
+	struct_node->str = strdup(str);
+	if (struct_node->str == NULL)
+	{
+		free(struct_node);
+		return (NULL);
+	}
+
+	struct_node->len = strlen(str);
+	struct_node->next = NULL;
 
 	if (*head == NULL)
 	{
-		*head = new_node;
+		*head = struct_node;
 	}
 	else
 	{
-	temp = *head;
+		temp = *head;
 		while (temp->next != NULL)
 		{
 			temp = temp->next;
 		}
-		temp->next = new_node;
+		temp->next = struct_node;
 	}
-	return (new_node);
+	return (struct_node);
 }
