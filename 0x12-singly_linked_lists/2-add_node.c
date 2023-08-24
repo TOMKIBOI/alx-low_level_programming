@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include "lists.h"
 #include <stdlib.h>
 #include <string.h>
 #include "lists.h"
@@ -14,26 +13,25 @@
 
 list_t *add_node(list_t **head, const char *str)
 {
+	list_t *struct_node;
+
 	if (str == NULL)
 		return (NULL);
 
-	list_t *stnew_node = (list_t *)malloc(sizeof(list_t));
-
-	if (stnew_node == NULL)
-
+	struct_node = malloc(sizeof(list_t));
+	if (struct_node == NULL)
 		return (NULL);
 
-	stnew_node->str = strdup(str);
-
-	if (stnew_node->str == NULL)
+	struct_node->str = strdup(str);
+	if (struct_node->str == NULL)
 	{
-
-		free(stnew_node);
+		free(struct_node);
 		return (NULL);
 	}
 
-	stnew_node->next = *head;
-	*head = stnew_node;
+	struct_node->len = strlen(str);
+	struct_node->next = *head;
+	*head = struct_node;
 
-	return (stnew_node);
+	return (struct_node);
 }
