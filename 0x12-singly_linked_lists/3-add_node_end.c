@@ -12,7 +12,7 @@
 
 list_t *add_node_end(list_t **head, const char *str)
 {
-	list_t *struct_node, *temp;
+	list_t *struct_node, *stor;
 
 	if (str == NULL)
 		return (NULL);
@@ -37,12 +37,12 @@ list_t *add_node_end(list_t **head, const char *str)
 	}
 	else
 	{
-		temp = *head;
-		while (temp->next != NULL)
+		stor = *head;
+		while (stor->next != NULL)
 		{
-			temp = temp->next;
+			stor = stor->next;
 		}
-		temp->next = struct_node;
+		stor->next = struct_node;
 	}
 	return (struct_node);
 }
