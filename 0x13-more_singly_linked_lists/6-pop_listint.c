@@ -1,20 +1,25 @@
 #include "lists.h"
 
 /**
-* free_listint2 - function prototype that frees listint_t
-* @head: head of the list.
+* pop_listint - deletes the head node of a listint_t
+* @head: head of the listint
 *
+* Return: returns node's data
 */
-void free_listint2(listint_t **head)
+int pop_listint(listint_t **head)
 {
-	listint_t *cur_node = *head;
+	int Pdata;
 	listint_t *temp;
 
-	while (cur_node != NULL)
+	if (*head == NULL)
 	{
-		temp = cur_node;
-		cur_node = cur_node->next;
-		free(temp);
+		return (0);
 	}
-	*head = NULL;
+
+	temp = *head;
+	Pdata = temp->n;
+	*head = (*head)->next;
+	free(temp);
+
+	return (Pdata);
 }
