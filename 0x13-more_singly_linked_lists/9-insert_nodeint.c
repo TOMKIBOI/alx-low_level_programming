@@ -3,7 +3,7 @@
 /**
 * insert_nodeint_at_index - Inserts a new node at a specific position.
 * @head: the head of the listint_t
-* @iindex: position where the new node is to be added.
+* @idx: position where the new node is to be added.
 * @n: character
 *
 * Return: returns saved new node, or NULL if it failed.
