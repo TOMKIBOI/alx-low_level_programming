@@ -1,10 +1,14 @@
 #ifndef _MAIN_H
 #define _MAIN_H
-
+#define ELF_HEADER_SIZE 64
 #include <unistd.h>
 #include <stdlib.h>
 #include <fcntl.h>
 #include <stdio.h>
+#include <elf.h>
+#include <fcntl.h>
+#include <sys/stat.h>
+#include <sys/types.h>
 
 int _putchar(char);
 ssize_t read_textfile(const char *filename, size_t letters);
