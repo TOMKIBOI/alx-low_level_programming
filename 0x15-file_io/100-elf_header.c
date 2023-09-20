@@ -1,82 +1,48 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include <elf.h>
-
+#include "main.h"
 /**
- * print_addr - prints address
- * @ptr: magic.
- *
- * Return: no return.
+ *main - prints elf header info
+ *@argc: arguement count
+ *@argv: arguement array
+ *Return: 0 success
  */
-
-void print_addr(char *ptr)
+int main(int argc, char *argv[])
 {
-	int i;
-	int begin;
-	char sys;
+	FILE *fp;
+	Elf64_Ehdr elf_header;
 
-	printf(" Entry point adress: 0x");
-
-	sys = ptr[4] + '0';
-	if (sys == '1')
+	if (argc != 2)
 	{
-		begin = 26;
-		printf("80");
-		for (i = begin; i >= 22; i--)
-		{
-			if (ptr[i] >0)
-				printf("%x", ptr[i]);
-			else if (ptr[i] < 0)
-				printf("%x", 256 + ptr[i]);
-		}
-		if (ptr[7] == 6)
-			printf("00");
+		fprintf(stderr, "Usage: %s elf_filename\n", argv[0]);
+		exit(1);
 	}
 
-	if (sys == '2')
+	fp = fopen(argv[1], "r");
+	if (fp == NULL)
 	{
-		begin = 26;
-		for (i = begin; i > 23; i--)
-		{
-			if (ptr[i] >= 0)
-				printf("%02x", ptr[i]);
-
-			else if (ptr[i] < 0)
-				printf("%02x", 256 + ptr[i]);
-		}
+		fprintf(stderr, "Could not open file '%s'\n", argv[1]);
+		exit(1);
 	}
-	printf("\n");
-}
 
-/**
- * print_type - prints type
- * @ptr: magic.
- * Return: no return
- */
-void print_type(char *ptr)
-{
-	char type = ptr[16];
+	if (lseek(fileno(fp), 0, SEEK_SET) != 0)
+	{
+		perror("lseek");
+		exit(1);
+	}
 
-	if (ptr[5] == 1)
-		type = ptr[16];
-	else
-		type = ptr[17];
-
-	printf(" Type:   ");
-	if (type == 0)
-		printf("NONE (No file type)\n");
-	else if (type == 1)
-		printf("REL (Relocatable file\n");
-	else if (type == 2)
-		printf("EXEC (Executable file)\n");
-	else if (type == 3)
-		printf("DYN (Shared object file)\n");
-	else if (type == 4)
-		printf("CORE (Core file)\n");
-	else
-		printf("<unknown: %x>\n", type);
+	if (read(fileno(fp), &elf_header, sizeof(elf_header)) != sizeof(elf_header))
+	{
+		perror("read");
+		exit(1);
+	}
+	printf("ELF Header:\n");
+	printf("  Magic: 0x%08x\n", elf_header.e_ident[EI_MAG2]);
+	printf("  Class: %d\n", elf_header.e_ident[EI_CLASS]);
+	printf("  Data: %d\n", elf_header.e_ident[EI_DATA]);
+	printf("  Version: %d\n", elf_header.e_ident[EI_VERSION]);
+	printf("  OS/ABI: %d\n", elf_header.e_ident[EI_OSABI]);
+	printf("  ABI Version: %d\n", elf_header.e_ident[EI_ABIVERSION]);
+	printf("  Type: %d\n", elf_header.e_type);
+	printf("  Entry point: 0x%lx\n", elf_header.e_entry);
+	fclose(fp);
+	return (0);
 }
