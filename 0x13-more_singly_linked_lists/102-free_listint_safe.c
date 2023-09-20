@@ -1,10 +1,10 @@
 #include "lists.h"
 
 /**
- * free_listp2 - f linked list
- * @head: head t.
+ * free_listp2 - frees
+ * @head: head of a list.
  *
- * Return: nothing to  return.
+ * Return: nthinf too return.
  */
 void free_listp2(listp_t **head)
 {
@@ -25,9 +25,9 @@ void free_listp2(listp_t **head)
 
 /**
  * free_listint_safe - frees
- * @h: head
+ * @h: head of a list.
  *
- * Return: size of the list
+ * Return: size
  */
 size_t free_listint_safe(listint_t **h)
 {
