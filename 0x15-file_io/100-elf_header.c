@@ -7,57 +7,55 @@
 #include <elf.h>
 
 /**
- * print_address - address point
- * @ptr: pointer
+ * print_addr - prints address
+ * @ptr: magic.
  *
- * Return: nothing to return.
+ * Return: no return.
  */
 
-void print_address(char *ptr)
+void print_addr(char *ptr)
 {
-	int x;
-	int start;
-	char file;
+	int i;
+	int begin;
+	char sys;
 
 	printf(" Entry point adress: 0x");
 
-	file = ptr[4] + '0';
-
-	if (file == '1')
+	sys = ptr[4] + '0';
+	if (sys == '1')
 	{
-		start = 26;
+		begin = 26;
 		printf("80");
-		for (x = start; x >= 22; x--)
+		for (i = begin; i >= 22; i--)
 		{
-			if (ptr[x] > 0)
-
-				printf("%x", ptr[x]);
-			else if (ptr[x] < 0)
-				printf("%x", 256 + ptr[x]);
+			if (ptr[i] >0)
+				printf("%x", ptr[i]);
+			else if (ptr[i] < 0)
+				printf("%x", 256 + ptr[i]);
 		}
 		if (ptr[7] == 6)
 			printf("00");
 	}
 
-	if (file == '2')
+	if (sys == '2')
 	{
-		start = 26;
-		for (x = start; x > 23; x--)
+		begin = 26;
+		for (i = begin; i > 23; i--)
 		{
-			if (ptr[x] >= 0)
-				printf("%02x", ptr[x]);
+			if (ptr[i] >= 0)
+				printf("%02x", ptr[i]);
 
-			else if (ptr[x] < 0)
-				printf("%02x", 256 + ptr[x]);
+			else if (ptr[i] < 0)
+				printf("%02x", 256 + ptr[i]);
 		}
 	}
 	printf("\n");
 }
 
 /**
- * print_type - printype
- * @ptr: pointer.
- * Return: nothing to return
+ * print_type - prints type
+ * @ptr: magic.
+ * Return: no return
  */
 void print_type(char *ptr)
 {
