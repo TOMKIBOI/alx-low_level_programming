@@ -1,69 +1,43 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include "lists.h"
 
 /**
- * free_listp - frlinked list
- * @head: head of a list.
+ * print_listint_safe - function prototye that prints alinked list.
+ * @head: pointer to node
  *
- * Return: nothing to return.
+ * Return: returns number of nodes
  */
-void free_listp(listp_t **head)
-{
-	listp_t *temp;
-	listp_t *curr;
 
-	if (head != NULL)
-	{
-		curr = *head;
-		while ((temp = curr) != NULL)
-		{
-			curr = curr->next;
-			free(temp);
-		}
-		*head = NULL;
-	}
-}
-
-/**
- * print_listint_safe - a linked list.
- * @head: head.
- *
- * Return: nodes in the list.
- */
 size_t print_listint_safe(const listint_t *head)
 {
-	size_t nnodes = 0;
-	listp_t *hptr, *new, *add;
+	const listint_t *slow = head;
+	const listint_t *fast = head;
+	size_t count = 0;
 
-	hptr = NULL;
-	while (head != NULL)
+	while (slow != NULL && fast != NULL && fast->next != NULL)
 	{
-		new = malloc(sizeof(listp_t));
+		printf("[%p] %d\n", (void *)slow, slow->n);
+		slow = slow->next;
+		fast = fast->next->next;
+		count++;
 
-		if (new == NULL)
-			exit(98);
-
-		new->p = (void *)head;
-		new->next = hptr;
-		hptr = new;
-
-		add = hptr;
-
-		while (add->next != NULL)
+		if (slow == fast)
 		{
-			add = add->next;
-			if (head == add->p)
-			{
-				printf("-> [%p] %d\n", (void *)head, head->n);
-				free_listp(&hptr);
-				return (nnodes);
-			}
+			printf("[%p] %d\n", (void *)slow, slow->n);
+			printf("-> [%p] %d\n", (void *)fast->next, fast->next->n);
+			exit(98);
 		}
-
+}
+	while (head != slow)
+	{
 		printf("[%p] %d\n", (void *)head, head->n);
 		head = head->next;
-		nnodes++;
+		count++;
 	}
 
-	free_listp(&hptr);
-	return (nnodes);
+	printf("[%p] %d\n", (void *)slow, slow->n);
+	count++;
+
+	return (count);
 }
