@@ -1,43 +1,69 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "lists.h"
 
 /**
- * print_listint_safe - function that prints alinked_l list.
- * @head: *p first node of the list.
+ * free_listp - frlinked list
+ * @head: head of a list.
  *
- * Return: returns 98 if failed.
+ * Return: nothing to return.
  */
+void free_listp(listp_t **head)
+{
+	listp_t *temp;
+	listp_t *curr;
 
+	if (head != NULL)
+	{
+		curr = *head;
+		while ((temp = curr) != NULL)
+		{
+			curr = curr->next;
+			free(temp);
+		}
+		*head = NULL;
+	}
+}
+
+/**
+ * print_listint_safe - a linked list.
+ * @head: head.
+ *
+ * Return: nodes in the list.
+ */
 size_t print_listint_safe(const listint_t *head)
 {
-	const listint_t *slo = head;
-	const listint_t *fas = head;
-	size_t count = 0;
+	size_t nnodes = 0;
+	listp_t *hptr, *new, *add;
 
-	while (slo != NULL && fas != NULL && fas->next != NULL)
+	hptr = NULL;
+	while (head != NULL)
 	{
-		printf("[%p] %d\n", (void *)slo, slo->n);
-		slo = slo->next;
-		fas = fas->next->next;
-		count++;
+		new = malloc(sizeof(listp_t));
 
-		if (slo == fas)
-		{
-			printf("[%p] %d\n", (void *)slo, slo->n);
-			printf("-> [%p] %d\n", (void *)fas->next, fas->next->n);
+		if (new == NULL)
 			exit(98);
+
+		new->p = (void *)head;
+		new->next = hptr;
+		hptr = new;
+
+		add = hptr;
+
+		while (add->next != NULL)
+		{
+			add = add->next;
+			if (head == add->p)
+			{
+				printf("-> [%p] %d\n", (void *)head, head->n);
+				free_listp(&hptr);
+				return (nnodes);
+			}
 		}
-}
-	while (head != slo)
-	{
+
 		printf("[%p] %d\n", (void *)head, head->n);
 		head = head->next;
-		count++;
+		nnodes++;
 	}
 
-	printf("[%p] %d\n", (void *)slo, slo->n);
-	count++;
-
-	return (count);
+	free_listp(&hptr);
+	return (nnodes);
 }
